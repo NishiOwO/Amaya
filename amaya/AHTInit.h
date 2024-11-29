@@ -50,7 +50,7 @@ Register the default set of transport protocols.
 
 #include "WWWTrans.h"
 
-extern void HTTransportInit (void);
+extern "C" void HTTransportInit (void);
 
 /*
 .
@@ -88,7 +88,7 @@ provides the minimal functionality needed for library reliabilty.
 #include "WWWMIME.h"
 #include "WWWApp.h"
 
-extern void HTMIMEInit (void);
+extern "C" void HTMIMEInit (void);
 
 /*
 .
@@ -133,7 +133,7 @@ etc.
 */
 #include "WWWHTTP.h"
 
-extern void HTTransferEncoderInit	(HTList * encodings);
+extern "C" void HTTransferEncoderInit	(HTList * encodings);
 
 /*
 .
@@ -145,7 +145,7 @@ etc.
 */
 #include "WWWZip.h"
 
-extern void HTContentEncoderInit	(HTList * encodings);
+extern "C" void HTContentEncoderInit	(HTList * encodings);
 
 /*
 .

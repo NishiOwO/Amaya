@@ -216,7 +216,7 @@ char* GetDocumentInstanceTemplateUrl(Document doc)
   if (t)
     return t->base_uri;
   else
-    return FALSE;
+    return NULL;
 #else /* TEMPLATES */
   return NULL;
 #endif /* TEMPLATES */

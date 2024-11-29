@@ -5847,7 +5847,7 @@ static void   XmlParse (FILE *infile, CHARSET charset, ThotBool *xmlDec,
   while (!endOfFile && !XMLNotWellFormed && !XMLInvalidToken)
     {
       /* read the XML file */
-      res = gzread (infile, bufferRead, COPY_BUFFER_SIZE);
+      res = fread (bufferRead, COPY_BUFFER_SIZE, 1, infile);
       if (res < 0)
         return;
 

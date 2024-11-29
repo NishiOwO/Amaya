@@ -38,6 +38,7 @@
 #include <fcntl.h>
 #include "HTEvtLst.h"
 #include "HTAABrow.h"
+#include "HTInit.h"
 #include "string.h"
 #include "interface.h"
 #include "message_wx.h"
@@ -2322,7 +2323,7 @@ static void AHTProfile_newAmaya (const char *AppName, const char *AppVersion)
   /* inhibits libwww's automatic file_suffix_binding */
   HTFile_doFileSuffixBinding (FALSE);
 
-  /* Register the default set of transport protocols */
+  /* Register the default set of transport protocols */ 
   HTTransportInit ();
 
   /* Register the default set of application protocol modules */
@@ -2596,10 +2597,10 @@ void QueryInit ()
     bufSize = atoi (ptr);
     TtaSetEnvInt ("BUF_SIZE_SOCKET", bufSize, TRUE);
     bufSize = bufSize * 1024;
-    HTSetSocketBufSize (bufSize);
+    //HTSetSocketBufSize (bufSize);
   }
   else {
-    HTUnSetSocketBufSize ();
+    //HTUnSetSocketBufSize ();
   }
 #endif /* SSL */
 }
