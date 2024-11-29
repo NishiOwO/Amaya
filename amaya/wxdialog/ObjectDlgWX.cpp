@@ -272,7 +272,11 @@ void ObjectDlgWX::OnBrowseButton( wxCommandEvent& event )
      _T(""),
      _T(""), 
      m_Filter,
+#ifdef wxOPEN
      wxOPEN | wxCHANGE_DIR /* wxCHANGE_DIR -> remember the last directory used. */
+#else
+     wxFC_OPEN | wxFD_CHANGE_DIR /* wxCHANGE_DIR -> remember the last directory used. */
+#endif
      );
 
   // set an initial path

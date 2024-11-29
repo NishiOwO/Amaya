@@ -43,6 +43,17 @@
 #define URL_STR       "/"
 #define URL_SEP       '/'
 
+#ifndef wxOPEN
+#define wxOPEN wxFC_OPEN
+#endif
+
+#ifndef wxSAVE
+#define wxSAVE wxFC_SAVE
+#endif
+
+#ifndef wxCHANGE_DIR
+#define wxCHANGE_DIR wxFD_CHANGE_DIR
+#endif
 
 /* Number of views used in Amaya */
 #define AMAYA_MAX_VIEW_DOC  7

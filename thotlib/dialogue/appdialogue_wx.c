@@ -2235,8 +2235,12 @@ ThotBool TtaHandleSpecialKey( wxKeyEvent& event )
       proceed_key = ( thot_keysym == WXK_INSERT   ||
                       thot_keysym == WXK_DELETE   ||
                       thot_keysym == WXK_HOME     ||
+#ifdef WXK_PRIOR
                       thot_keysym == WXK_PRIOR    ||
+#endif
+#ifdef WXK_NEXT
                       thot_keysym == WXK_NEXT     ||
+#endif
 #ifdef _MACOS
                       thot_keysym == WXK_PAGEUP   ||
                       thot_keysym == WXK_PAGEDOWN ||

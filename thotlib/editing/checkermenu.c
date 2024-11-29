@@ -448,7 +448,7 @@ void TtaGetProposal (char **proposal, int i)
   if (strcmp (ChkrCorrection[i], "$"))
     *proposal = ChkrCorrection[i];
   else
-    proposal[0] = EOS;
+    proposal[0] = NULL;
 }
 
 /*----------------------------------------------------------------------

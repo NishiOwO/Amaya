@@ -4,6 +4,7 @@
 #define AMAYACOLORBUTTON_H_
 
 #include "wx/wx.h"
+#include "wx/colourdata.h"
 #include "AmayaPanel.h"
 #include "AmayaToolBar.h"
 

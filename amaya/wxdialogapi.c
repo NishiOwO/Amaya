@@ -10,6 +10,7 @@
 #include "wx/xrc/xmlres.h"
 #include "wx/xrc/xmlres.h"
 #include "wx/tokenzr.h"
+#include "wx/colourdata.h"
 
 #include "file_filters.h"
 #include "registry_wx.h"

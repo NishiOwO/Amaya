@@ -128,7 +128,7 @@ static unsigned char *ReadPng (FILE *pfFile, unsigned int *width, unsigned int *
   png_byte      **ppbRowPointers;
   unsigned char  *pixels;
   unsigned int    i, j, passes;
-  unsigned long   lw, lh;
+  uint32_t        lw, lh;
   int             iBitDepth, iColorType;
   double          dGamma;
 
@@ -149,7 +149,7 @@ static unsigned char *ReadPng (FILE *pfFile, unsigned int *width, unsigned int *
         png_destroy_read_struct (&png_ptr, NULL, NULL);
         return NULL;
       }   
-    if (setjmp (png_ptr->jmpbuf))
+    if (setjmp (png_jmpbuf(png_ptr)))
       {
         /* Free all of the memory associated with the png_ptr and info_ptr */
         png_destroy_read_struct (&png_ptr, &info_ptr, (png_infopp)NULL);
@@ -175,7 +175,7 @@ static unsigned char *ReadPng (FILE *pfFile, unsigned int *width, unsigned int *
       png_set_palette_to_rgb (png_ptr);
     /* 8 bits / channel is needed */
     if (iColorType == PNG_COLOR_TYPE_GRAY && iBitDepth < 8) 
-      png_set_gray_1_2_4_to_8(png_ptr);
+      png_set_expand_gray_1_2_4_to_8(png_ptr);
     /* all transparency type : 1 color, indexed => alpha channel*/
     if (png_get_valid (png_ptr, info_ptr,PNG_INFO_tRNS)) 
       png_set_tRNS_to_alpha (png_ptr);
@@ -232,7 +232,7 @@ static unsigned char *ReadPng (FILE *pfFile, unsigned int *width, unsigned int *
 static void PError (png_struct *png_ptr, char *message)
 {
    fprintf(stderr,"libpng error: %s\n", message);
-   longjmp(png_ptr->jmpbuf, 1);
+   longjmp(png_jmpbuf(png_ptr), 1);
 }
 
 /*----------------------------------------------------------------------
@@ -306,7 +306,7 @@ static unsigned char *ReadPng (FILE *infile, int *width, int *height,
   pixels = NULL;
   isgrey = FALSE;
   cr = cg = cb = 0;
-  if (setjmp (png_ptr->jmpbuf))
+  if (setjmp (png_jmpbuf(png_ptr)))
     {
       /* Free all of the memory associated with the png_ptr and info_ptr */
       png_destroy_read_struct (&png_ptr, &info_ptr, (png_infopp)NULL);
@@ -858,7 +858,7 @@ ThotBool SavePng (const char *filename,
       png_destroy_write_struct(&png, (png_infopp) NULL);
       return FALSE;
     }
-  if (setjmp(png->jmpbuf)) 
+  if (setjmp(png_jmpbuf(png))) 
     {
         png_destroy_write_struct(&png, &pngInfo);
         TtaWriteClose (pngFile);

@@ -253,7 +253,12 @@ void ImageDlgWX::OnBrowseButton( wxCommandEvent& event )
      _T(""),
      _T(""), 
      m_Filter,
-     wxOPEN | wxCHANGE_DIR /* remember the last directory used. */);
+#ifdef wxOPEN
+     wxOPEN | wxCHANGE_DIR /* remember the last directory used. */
+#else
+     wxFC_OPEN | wxFD_CHANGE_DIR /* remember the last directory used. */
+#endif
+     );
 
   // set an initial path
   wxString url = XRCCTRL(*this, "wxID_URL", wxTextCtrl)->GetValue( );

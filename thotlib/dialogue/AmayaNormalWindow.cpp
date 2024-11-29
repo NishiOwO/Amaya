@@ -7,6 +7,7 @@
 
 #ifdef _WX
 #include "wx/wx.h"
+#include "wx/colourdata.h"
 #include "wx/tglbtn.h"
 #include "wx/string.h"
 #include "wx/spinctrl.h"
@@ -1058,7 +1059,7 @@ void AmayaNormalWindow::OnRecentDocMenu(wxCommandEvent& event)
   if(id < (int)m_URLs.GetCount())
     {
       wxString str = m_URLs[id];
-      if(str)
+      if(static_cast<const char*>(str.mb_str()) != NULL)
         {
           SetURL(str);
           GotoSelectedURL (TRUE);

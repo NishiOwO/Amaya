@@ -16,6 +16,7 @@
 #include <wx/tokenzr.h>
 #include <wx/recguard.h>
 #include <wx/grid.h>
+#include <wx/string.h>
 
 
 #define THOT_EXPORT extern
@@ -246,7 +247,7 @@ void SendByMailDlgWX::LoadRecentList()
   if(lastRcpt)
   {
     wxString rcpts(lastRcpt, wxConvUTF8);
-    m_rcptArray = ::wxStringTokenize(wxString(rcpts, wxConvUTF8), wxT("|"));
+    m_rcptArray = ::wxStringTokenize(wxString(rcpts.wc_str(), wxConvUTF8), wxT("|"));
   }
   if(m_rcptArray.GetCount()==0)
     m_rcptArray.Add(wxString(TtaGetEnvString ("EMAILS_FROM_ADDRESS"), wxConvUTF8));

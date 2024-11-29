@@ -68,7 +68,6 @@ AC_PATH_PROG(SED, sed, /bin/sed, $PATH:/bin:/usr/bin:/usr/ucb/bin)
 AC_PATH_PROG(AR, ar, /usr/bin/ar, $PATH:/bin:/usr/bin:/usr/ucb/bin)
 AC_PATH_PROG(DIFF, diff, /usr/bin/diff, $PATH:/bin:/usr/bin:/usr/ucb/bin)
 
-
 dnl
 dnl Checks for libraries.
 dnl
@@ -503,7 +502,7 @@ CFLAGS="${CFLAGS} -x c"
 
 # C++ options (-x c++)
 #CXXFLAGS="${CXXFLAGS} -Wall"
-CXX_OPTIONS="-D__cplusplus"
+CXX_OPTIONS=""
 CXXFLAGS="${CXXFLAGS} -Wall -x c++ ${CXX_OPTIONS}"
 
 # setup LDFLAGS
@@ -1134,6 +1133,19 @@ else
     templates_frag=/dev/null
 fi
 AC_SUBST_FILE(templates_frag)
+
+dnl
+dnl NetBSD stuff
+dnl
+
+if test "`uname -s`" = "NetBSD"; then
+CFLAGS="$CFLAGS -I/usr/pkg/include -I/usr/X11R7/include"
+CXXFLAGS="$CXXFLAGS -I/usr/pkg/include -I/usr/X11R7/include"
+LDFLAGS="$LDFLAGS -L/usr/pkg/lib -L/usr/X11R7/lib"
+LDFLAGS="$LDFLAGS -Wl,-R/usr/pkg/lib -Wl,-R/usr/X11R7/lib"
+fi
+
+CXXFLAGS="$CXXFLAGS -std=c++11 -fpermissive"
 
 dnl  ***************************************************************
 dnl

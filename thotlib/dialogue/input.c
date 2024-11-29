@@ -707,12 +707,16 @@ int ThotInput (int frame, unsigned int value, int command, int modifiers,
           case THOT_KEY_Down:
             index = MY_KEY_Down;
             break;
+#ifdef WXK_PRIOR
           case THOT_KEY_Prior:
             index = MY_KEY_Prior;
             break;
+#endif
+#ifdef WXK_NEXT
           case THOT_KEY_Next:
             index = MY_KEY_Next;
             break;
+#endif
           case THOT_KEY_Home:
             index = MY_KEY_Home;
             break;

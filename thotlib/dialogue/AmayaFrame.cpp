@@ -352,7 +352,9 @@ bool AmayaFrame::SetCurrent()
   if ( DisplayIsReady() )
     {
       TTALOGDEBUG_1( TTA_LOG_DRAW, _T("AmayaFrame::SetCurrent()[OK] - frame_id=%d"), m_FrameId );
+#ifdef _NOSHARELIST
       m_pCanvas->SetCurrent();
+#endif
       return TRUE;
     }
   else

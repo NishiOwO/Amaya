@@ -4349,8 +4349,8 @@ void GetNextHTMLbuffer (FILE *infile, ThotBool *endOfFile,
       WorkBuffer = FileBuffer;
     }
   // need to read a new set of characters
-  LastCharInWorkBuffer = gzread (infile, &FileBuffer[StartOfRead],
-                                 INPUT_FILE_BUFFER_SIZE - StartOfRead);
+  LastCharInWorkBuffer = fread (&FileBuffer[StartOfRead],
+                                 INPUT_FILE_BUFFER_SIZE - StartOfRead, 1, infile);
   // add previous read characters not managed yet
   LastCharInWorkBuffer += StartOfRead;
   StartOfRead = 0;

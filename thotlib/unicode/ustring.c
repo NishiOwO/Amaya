@@ -433,7 +433,7 @@ CHARSET TtaGetLocaleCharset ()
 	}
    }
 #else /* _WINDOWS */
-#if !defined(_MACOS) && !defined(_FREEBSD)
+#if !defined(_MACOS) && !defined(_FREEBSD) && !defined(__NetBSD__)
   if (LocaleSystemCharset == UNSUPPORTED_CHARSET)
     {
       char *buffer;
